@@ -1,37 +1,18 @@
-//
-//  CVector.hpp
-//
-//  Created by Hassani on 9/20/15.
-//  Copyright (c) 2015 Dragon. All rights reserved.
-//
-
 #ifndef __CVECTOR_HPP__
 #define __CVECTOR_HPP__
 
 #include <cstdint>
 
-/*
- * Vector namespace
- */
 namespace vector {
-
-#pragma mark Typedef
 
     // Create unsigned int typedef
     typedef unsigned int u_int;
-
-
-#pragma mark Forward Declaration
 
     // Forward Declaration for vector class
     template <typename T>
     class CVector;
 
-#pragma mark CVectorIter class
-
-    /*
-     * CVectorIter Class
-     */
+    // CVectorIter Class
     template <typename Object>
     class CVectorIter {
 
@@ -69,18 +50,12 @@ namespace vector {
         u_int vec_size;                 // Size of the vector
     };
 
-
-
-    /* CVectorIter Class Implementation */
-
     // Constructor
     template <typename T>
     CVectorIter<T>::CVectorIter(T*& data, u_int vector_size, u_int position)
         : cur_pos(position), vec_size(vector_size) {
         _data = &data;
     }
-
-#pragma mark CVectorIter Operator Overloads
 
     // Operator Overloads
     template <typename T>
@@ -106,7 +81,6 @@ namespace vector {
         return *temp;
     }
 
-
     template <typename T>
     CVectorIter<T>& CVectorIter<T>::operator + (int x) {
         // Modify the current position
@@ -124,7 +98,6 @@ namespace vector {
         // Return myself
         return *this;
     }
-
 
     template <typename T>
     CVectorIter<T>& CVectorIter<T>::operator -- () {
@@ -148,7 +121,6 @@ namespace vector {
         // Return my old self
         return *temp;
     }
-
 
     template <typename T>
     CVectorIter<T>& CVectorIter<T>::operator - (int x) {
@@ -213,11 +185,7 @@ namespace vector {
         return *this;
     }
 
-#pragma mark CVector Class
-
-    /*
-     * CVector class
-     */
+    // CVector class
     template <typename Object>
     class CVector {
     public:
@@ -266,20 +234,14 @@ namespace vector {
         Object* _data;      // The array to wrap
     };
 
-
-
-    /* CVector Class Implementation */
-
-#pragma mark CVector Constructors
-
     // Constructors
     template <typename T>
     CVector<T>::CVector(u_int size)
-    : _size(0), _capacity(size), _data( new T[_capacity] ) {}
+        : _size(0), _capacity(size), _data( new T[_capacity] ) {}
 
     template <typename T>
     CVector<T>::CVector(u_int size, T&& data)
-    : _size(size), _capacity(size * 2), _data( new T[_capacity] ) {
+        : _size(size), _capacity(size * 2), _data( new T[_capacity] ) {
         // Fill the array with the given data
         for (int i = 0; i < _size; i++)
             _data[i] = data;
@@ -302,12 +264,9 @@ namespace vector {
         _data = new_data;
     }
 
-
     // Destructor
     template <typename T>
-    CVector<T>::~CVector() { delete [] _data; _data = nullptr; }
-
-#pragma mark CVector Operator Overloads
+    CVector<T>::~CVector() { delete [] _data; }
 
     // Operator Overloads
     template <typename T>
@@ -339,12 +298,7 @@ namespace vector {
     template <typename T>
     T CVector<T>::operator [] (u_int index) const { return _data[index]; }
 
-
-    // Methods
-
-#pragma mark CVector Modifiers
-
-    /* Getters */
+    // Getters 
     template <typename T>
     u_int CVector<T>::size() const { return _size; }
 
@@ -353,7 +307,6 @@ namespace vector {
 
     template <typename T>
     bool CVector<T>::isEmpty() const { if (_size == 0) return true; else return false; }
-
 
     /* Vector Modifiers (Public) */
     template <typename T>
@@ -394,7 +347,6 @@ namespace vector {
         _data = new_data;
     }
 
-
     /* Vector Modifiers (Private) */
     template <typename T>
     void CVector<T>::extend() {
@@ -415,9 +367,6 @@ namespace vector {
         // Set the old array to the new array
         _data = new_data;
     }
-
-
 }
-
 
 #endif /* __CVECTOR_HPP__ defined */
