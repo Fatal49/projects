@@ -1,2 +1,3 @@
-# Ignore all binary files located in a bin folder
-*/bin/
+# Ignore all binary files located in the bin_mac and bin_linx folders
+**/bin_mac/
+**/bin_linux/
